@@ -1,0 +1,25 @@
+.......PACKAGES........
+
+##### XTS #####
+
+xts(data, order.by = index(x)) <- cria um objeto xts
+coredata() <- extrai a core data de um objeto xts	
+as.xts() <- converte uma série de dados para uma série temporal xts indexada
+as.xts(read.table())
+as.xts(read.csv())
+read.csv()
+read.zoo()
+as.yearmon()
+
+getSymbols(symbol, assign.name = TRUE, scr = "google")
+Quandl(source/symbol)
+Op()
+Hi()
+Lo()
+Cl()
+Vo()
+Ad()
+OHLC()
+HLC()
+OHLCV()
+getPrice(data, symbol = "XXX", prefer = "regex")

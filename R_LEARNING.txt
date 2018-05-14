@@ -1,0 +1,196 @@
+# FUNCOES UTEIS DO R
+
+Sys.Date() <- retorna o dia de hoje
+Sys.time <- retorna o horário atual
+str() <- outputs the structure of a R object
+summary() <- summarizes the data on a R object (using this on a data frame will yield the quarters and the mean, while using this on a linear regression model will yield the significance tests)
+class() <- outputs the class of a R object
+as.numeric()
+as.integer()
+as.Date()
+is.na() <- checa por dados missing
+round(x, digits = n) <- arredonda numeros	
+
+# OPERADORES RELACIONAIS
+  >, <, !=, ==, <=, >=
+# OPERADORES LOGICOS
+  & <- interseccao
+  | <- união
+  ! <- negação
+  ! pode ser usado na frente de funções e operadores para obter o seu inverso
+
+# DATAS
+  formatação padrao do R = yyyy-mm-dd
+  formatar algo que não está dentro do padrão R 
+  as.Date(x, format = "%Y/%B/%d)
+  %Y - ano em quatro digitos
+  %y - ano em dois digitos
+  %m - mes em dois digitos
+  %d - dia do mes em dois digitos
+  %A - dia da semana
+  %a - dia da semana abr.
+  %B - mês
+  %b - mes abr.
+  ex. as.Date("Aug 01, 1996, format= "%b %d, %Y")
+  format(x, format = ) <- reverte o formato de uma data
+  months()
+  quarters()
+  weekdays() 
+
+# MATRIZES
+minha_matriz <- matrix(data, nrow = x, ncol = x, byrow = TRUE)
+minha_col <- minha_matrix[ , ]
+
+
+# PLOTS
+plot(x, y, xlab="titulo do eixo x", ylab="titulo do eixo y", main="titulo do plot", sub="subtitulo")
+hist()
+View() <- R studio
+
+# ADICIONAR COISAS EM UMA MATRIX
+  cbind(matrix, vector)
+  rbind(matrix, vector)
+  names(x)
+  colnames(x)
+  rownames(X)
+
+# DATA FRAMES
+  data <- data.frame(vectors, stringsAsFactors = TRUE(bydefault))
+  data$column
+  data$new_column <- vector
+
+# SUBSETAR DADOS DO DATA FRAME
+data_subset <- subset(data, column == colname)
+operadores podem ser usados para subsetar
+subset(data, colname, x < y & z < j)
+
+# FACTOR
+  algumacoisa <- factor("categorias"...)
+  
+  >algumas funções aplicadas em um factor
+  as.integer(algumacoisa) = ordem dos factors
+  class(algumacoisa) = "factor"
+  levels(algumacoisa) = factors
+  >utilização de cut
+  gruparfactors <- cut(algumacoisa, breaks = vector) this vector can be something like c(10, 20, 30, 40, 50)
+  levels(algumacoisa) = outputs the factor's unique levels, can be used to rename
+  levels(algumacoisa) <- c("nomes"....)
+  summary(algumacoisa) = will output a list of factors and how many of them there are
+
+## it's also possible to plot the factor using plot(factor)
+with levels() and cut() you can plot the factors in groups
+
+## para ordenar, simply
+fator <- factor(fator, levels = vector(ordem decrescente), ordered = TRUE) 
+## para remover
+fator <- factor[-c(x, y, ..), drop = TRUE(para remover o fator aswell)]
+
+# LISTAS
+  criar uma lista / lista <- list(x, y, z, ...)
+  nomear componentes / names(lista) <- c("nome1", "nome2"...)
+  acessar itens da lista / lista[c(1, 2...)] ou lista$nome1
+  add / simply lista$novo <- c(i, j, ...)
+  remove / simply lista$novo <- NULL, ou lista[1] <- NULL ou lista[[1]] <- NULL
+  dividir / lista_split <- split(lista, lista$nome1 <- this can be a variable!)
+  reagrupar / unsplit <- unsplit(lista_split, lista$nome1)]
+  atributos de um objeto do R / attributes(lista)
+  selecionar um atr da lista / attr(lista, which = "atributo")
+
+# STATS!!!
+## coeficiente de correlação de pearson
+   cor(x, y)
+## criar matrix de correlação
+   cor_matrix <- cor(cbind(x, y))
+
+# MAIS LOGICA
+  if (condition) {             
+   code                            
+  }                             
+                                        
+  if (condition) {                    
+   code                             
+  } else {
+   code <- if false
+  }
+
+  if(cond1) {
+   code <- if cond1 is true
+  } else if (cond2) {
+   code <- if cond2 is true
+  } else {
+   code <- if both are false
+  }
+
+  ifelse(test = condition, yes = if cond is true, no = otherwise) <- teste para lancar um if else em um vetor
+
+## While <- executa uma operação várias vezes enquanto a condition não for cumprida  
+
+  While (debt > 0) {
+    debt <- debt - 500
+    print(paste("your debt is", debt))
+    }
+   
+## for <- loopa uma operação sobre um vetor, lista ou data frame
+  
+## for(x in vector) {
+    operation
+    print(vector)
+   }
+  
+## for(x in 1:nrow(stock)) {
+    price <- stock[row, "apple"]
+    date  <- stock[row, "date"]
+  if(price > 116) {
+    print(paste("on", date, "the stock price was", price))
+  } else {
+    print(paste("this date:", date, "is not an important day!")
+  }
+}
+ 
+##  for(row in 1:nrow(matrix)) {
+  for(col in 1:ncol(matrix)) {
+  print(paste(colnames(corr)[col], "and", rownames(corr)[row], "have a correlation of ", corr[row, col]))
+ 
+# FUNCTIONSS
+  estrutura basica
+  nome_funcao <- funcao(argumento1, arg2...) {
+    corpo
+    return(corpo)
+  }	
+## you can put many things, like loops and other functions as well
+
+## FAMILIA APPLY
+lapply(lista-data.frame-array, FUN = function) <- aplica uma função em um vetor, output é uma lista
+sapply(x, FUN = function, ..., simplify = TRUE, USE.NAMES = TRUE) <- aplica uma função em um array, output é uma lista simplificada
+vapply(x, FUN = function, ..., FUN.VALUE = specification) <- aplica uma função em uma data
+ structure, formatada conforme especificado
+
+
+## TIME SERIES
+
+ts(data, frequency, start) <- cria um objeto time series
+is.ts() <- verifica se um objeto é uma time series
+ts.plot(data, col, xlab, ylab, main)
+
+
+start() <- primeira observação
+end() <- ultima observacao
+frequency() <- número de observações
+deltat() <- fração de tempo entre observações
+time() <- retorna um vetor de índice de tempo
+
+log() <- transformação logaritmica em uma serie
+diff(x, lag, s) <- diferencia uma série
+
+arima.sim() <- ferramenta para simular modelos de time series
+arima.sim(model = list(order = c(0, 0, 0)), n, mean, sd) <- simula um white noise
+arima(data, order = c(0, 0, 0)) <- fit um white noise	
+
+abline(a, b) <- cria uma linha com y-intercepto a e inclinação b
+plot.ts(cbind(white_noise, random_walk, rw_drift, wn_drift))
+
+cumsum() <- calcula uma soma cumulativa de um processo (usado pra transformar wn em rw)
+pairs() <- plota vários scatterplots
+
+cov() <- covariancia
+cor() <- correlação
